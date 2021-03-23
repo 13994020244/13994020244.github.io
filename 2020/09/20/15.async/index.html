@@ -1,0 +1,126 @@
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>blur</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:ital,wght@0,700;1,700&display=swap" rel="stylesheet">
+    <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel = "icon" href =  "https://i.pinimg.com/originals/4a/a5/df/4aa5df83115df6c96732a2d76ccb4f1b.jpg" type = "image/x-icon"> 
+    
+<link rel="stylesheet" href="/css/styles.css">
+ 
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body>
+    <div class="container">
+      <!-- Header -->
+      <link rel = "icon" href =  "https://i.pinimg.com/originals/4a/a5/df/4aa5df83115df6c96732a2d76ccb4f1b.jpg" type = "image/x-icon"> 
+<nav id="nav">
+  <header class="header">
+    <a href="/" class="header-title">
+      BLUR <i class="fa fa-fire" aria-hidden="true"></i>
+    </a>
+    
+  </header>
+
+  
+
+  <div class="nav-wrapper">
+    <div class="menu">
+      <a href="/" class="nav-menu z-active">HOME</a>
+      <a href="/about" class="nav-menu">ABOUT</a>
+      <a href="/archives" class="nav-menu">ARCHIVE</a>
+    </div>
+
+    <div class="icons">
+      <a target="_blank" rel="noopener" href="https://github.com/kiten46087" class="nav-icon" >
+        <i class="fa fa-github-alt" aria-hidden="true"></i>
+      </a>
+      <a href="" class="nav-icon">
+        <i class="fa fa-linkedin-square" aria-hidden="true"></i>
+      </a>
+      <a href="" class="nav-icon">
+        <i class="fa fa-facebook-square" aria-hidden="true"></i>
+      </a>
+    </div>
+
+    
+  </div>
+</nav>
+    
+<!-- <hr class="hr-divide-header" align="left"> -->
+      <a name="top"></a>
+
+<section class="article">  
+  <h2 class="article-title">
+    async 
+  </h2>
+  <p class="article-date">
+    2020/9/20 
+  </p>
+
+  <hr class="hr-divide">
+
+  <div class="article-content">
+    <p>async =&gt; Generator 函数的语法糖<br>使得异步操作变得更加方便</p>
+<blockquote>
+<p>async函数就是将 Generator 函数的星号（*）替换成async，将yield替换成await</p>
+</blockquote>
+<ol>
+<li>async自带执行器，genertor函数必须靠执行器（co模块）</li>
+<li>更好的语义化，async和await，比起星号和yield，语义更清楚了。async表示函数里有异步操作，await表示紧跟在后面的表达式需要等待结果</li>
+<li>返回值是 Promise</li>
+<li>更广的适用性<br>yield命令后面只能是 Thunk 函数或 Promise 对象<br>yield命令后面只能是 Thunk 函数或 Promise 对象(数值、字符串和布尔值，但这时会自动转成立即 resolved 的 Promise 对象)</li>
+<li>genertor函数的语法糖</li>
+</ol>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">timeout</span>(<span class="params">ms</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(resolve, ms);</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">asyncPrint</span>(<span class="params">value, ms</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">await</span> timeout(ms);</span><br><span class="line">  <span class="built_in">console</span>.log(value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">asyncPrint(<span class="string">&#x27;hello world&#x27;</span>, <span class="number">5000</span>);</span><br></pre></td></tr></table></figure>
+
+<p>语法：</p>
+<p>返回 Promise 对象<br>async函数返回一个 Promise 对象。</p>
+<p>async函数内部return语句返回的值，会成为then方法回调函数的参数</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> <span class="string">&#x27;hello world&#x27;</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f().then(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">console</span>.log(v))</span><br><span class="line"><span class="comment">// &quot;hello world&quot;</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>async函数内部抛出错误，会导致返回的 Promise 对象变为reject状态。抛出的错误对象会被catch方法回调函数接收到</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">throw</span> <span class="keyword">new</span> <span class="built_in">Error</span>(<span class="string">&#x27;出错了&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f().then(</span><br><span class="line">  v =&gt; <span class="built_in">console</span>.log(v),</span><br><span class="line">  e =&gt; <span class="built_in">console</span>.log(e)</span><br><span class="line">)</span><br><span class="line"><span class="comment">// Error: 出错了</span></span><br></pre></td></tr></table></figure>
+
+
+<p>Promise 对象的状态变化</p>
+<blockquote>
+<p>async函数返回的 Promise 对象，必须等到内部所有await命令后面的 Promise 对象执行完，才会发生状态改变，除非遇到return语句或者抛出错误。也就是说，只有async函数内部的异步操作执行完，才会执行then方法指定的回调函数</p>
+</blockquote>
+<p>await 命令</p>
+<blockquote>
+<p>await命令后面是一个 Promise 对象，返回该对象的结果。如果不是 Promise 对象，就直接返回对应的值</p>
+</blockquote>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">f</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="comment">// 等同于</span></span><br><span class="line">  <span class="comment">// return 123;</span></span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> <span class="number">123</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f().then(<span class="function"><span class="params">v</span> =&gt;</span> <span class="built_in">console</span>.log(v))</span><br><span class="line"><span class="comment">// 123</span></span><br></pre></td></tr></table></figure> 
+    <hr class="hr-divide">
+    <div class="article-footer">
+      <a href="#top">back to top</a>
+    </div>
+  </div>
+
+  
+</section>  
+      <!-- Footer -->
+      <!-- <h1>This is the footer.ejs file</h1> -->
+
+<footer class="footer">
+  <p style="margin-top: 0px;">
+    Powered by <a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>
+    Created by <a href="">@Qitian Lin</a>
+  </p>
+</footer>  
+    </div>
+
+    <!-- After footer file to store js of Bootstrap -->
+    <!-- <h1>This is the after-footer ejs file</h1> -->
+<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+ 
+  </body>
+
+</html>
